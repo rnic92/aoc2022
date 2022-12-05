@@ -36,10 +36,8 @@ def part1():
     for i in stacks.keys():
         stacks[i].reverse()
 
-    for i in dir2:
-        moves = i[0]
-        origination = i[1]
-        endstack = i[2]
+    for moves,origination,endstack in dir2:
+
         for j in range(moves):
             n = stacks[origination].pop()
             stacks[endstack].append(n)
@@ -73,10 +71,7 @@ def part2():
             stacks[9].append(row[33])
     for i in stacks.keys():
         stacks[i].reverse()
-    for i in dir2:
-        boxes_moved = i[0]
-        origination = i[1]
-        endstack = i[2]
+    for boxes_moved, origination, endstack in dir2:
         n = stacks[origination][-boxes_moved:]
         stacks[origination] = stacks[origination][:-boxes_moved]
         stacks[endstack] = stacks[endstack] + n
