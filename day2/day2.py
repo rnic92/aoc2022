@@ -65,8 +65,10 @@ def calcday2(day):
             ret = result[r[n2]] + throw['rock']
     return ret
 
-
-
+OPTIONDICT = {"A X": 3, "B X": 2, "C X": 1, "A Y": 4, "B Y": 5, "C Y": 6,
+                "A Z": 8, "B Z": 9, "C Z": 7}
+def calcday22(day):
+    return OPTIONDICT[day]
 with open("/Users/nic/Documents/aoc22/day2_input.txt") as f:
     today = f.read().split('\n')[:-1]
 #A rock, B paper, C scissors
@@ -75,3 +77,5 @@ summer = 0
 for i in today:
     summer += calcday2(i)
 print(summer)
+for i in today:
+    print(calcday22(i))
