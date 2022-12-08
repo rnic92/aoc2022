@@ -9,8 +9,9 @@ starting, directions = today[:8], today[10:]
 dir2 = [x.split(' ') for x in directions]
 dir2 = [[int(x[1]),int(x[3]),int(x[5])] for x in dir2]
 
-def part1():
-    # creates dictionary as [1: , 2: , 3: , 4: , 5: ....] as the starting stack
+
+def createStartingStacks(inp):
+        # creates dictionary as [1: , 2: , 3: , 4: , 5: ....] as the starting stack
     stacks = {key:[] for key in range(1, len(starting)+2)}
     for row in starting:
         if row[1] != ' ':
@@ -35,6 +36,11 @@ def part1():
     # reverse them to be upright
     for i in stacks.keys():
         stacks[i].reverse()
+    return stacks
+
+
+def part1():
+    stacks = createStartingStacks()
 
     for moves,origination,endstack in dir2:
 
@@ -49,28 +55,8 @@ def part1():
 
 
 def part2():
-    stacks = {key:[] for key in range(1, len(starting)+2)}
-    for row in starting:
-        if row[1] != ' ':
-            stacks[1].append(row[1])
-        if row[5] != ' ':
-            stacks[2].append(row[5])
-        if row[9] != ' ':
-            stacks[3].append(row[9])
-        if row[13] != ' ':
-            stacks[4].append(row[13])
-        if row[17] != ' ':
-            stacks[5].append(row[17])
-        if row[21] != ' ':
-            stacks[6].append(row[21])
-        if row[25] != ' ':
-            stacks[7].append(row[25])
-        if row[29] != ' ':
-            stacks[8].append(row[29])
-        if row[33] != ' ':
-            stacks[9].append(row[33])
-    for i in stacks.keys():
-        stacks[i].reverse()
+    stacks = createStartingStacks()
+    
     for boxes_moved, origination, endstack in dir2:
         n = stacks[origination][-boxes_moved:]
         stacks[origination] = stacks[origination][:-boxes_moved]
